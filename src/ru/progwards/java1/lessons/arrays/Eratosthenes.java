@@ -11,22 +11,15 @@ public class Eratosthenes {
         sift();
     }
     private void sift() {
-        for (int i = 2, n = sieve.length; i*i < n; ++i) {
-            for (int j = i; i*j < n; ++j) {
-                sieve[i*j] = false;
+        for (int p = 2, n = sieve.length; p*p < n; ++p) {
+            if (sieve[p] == false) continue;   // Пропускаются зачеркнутые числа,
+            for (int j = p; p*j < n; ++j) {    // цикл начинается с первого не зачеркнутого числа j = p;
+                sieve[p*j] = false;
             }
         }
         sieve[0] = false;
         sieve[1] = false;
     }
-//    private void sift() {
-//        for (int i = 2, n = sieve.length/2 + 1; i < n; ++i)
-//            for (int j = i; j < sieve.length; ++j)
-//                if (j % i == 0 && j / i != 1)
-//                    sieve[j] = false;
-//        sieve[0] = false;
-//        sieve[1] = false;
-//    }
     public boolean isSimple(int n) {
         return sieve[n];
     }
