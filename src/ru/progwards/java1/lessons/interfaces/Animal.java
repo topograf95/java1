@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.interfaces;
 
-import ru.progwards.java1.lessons.classes.*;
-
 import java.util.Objects;
 
 enum AnimalKind { ANIMAL, COW, HAMSTER, DUCK }
@@ -54,17 +52,17 @@ public class Animal implements FoodCompare {
         return Double.compare(this.getFoodPrice(), animal.getFoodPrice());
     }
 
-    public static void main(String[] args) {
-        ru.progwards.java1.lessons.classes.Animal an = new ru.progwards.java1.lessons.classes.Animal(55.0);
-        Cow cow = new Cow(100.0);
-        Hamster ham = new Hamster(100.0);
-        Duck duck = new Duck(5.0);
-        System.out.println(an.toStringFull());
-        System.out.println(cow.toStringFull());
-        System.out.println(ham.toStringFull());
-        System.out.println(duck.toStringFull());
-        System.out.println(ham.equals(ham));
-    }
+//    public static void main(String[] args) {
+//        Animal an = new Animal(55.0);
+//        Cow cow = new Cow(100.0);
+//        Hamster ham = new Hamster(100.0);
+//        Duck duck = new Duck(5.0);
+//        System.out.println(an.toStringFull());
+//        System.out.println(cow.toStringFull());
+//        System.out.println(ham.toStringFull());
+//        System.out.println(duck.toStringFull());
+//        System.out.println(ham.equals(ham));
+//    }
 
     @Override
     public boolean equals(Object o) {
