@@ -27,9 +27,9 @@ public class CalculateFibonacci {
         return lastFibo;
     }
     public static void clearLastFibo() {
-        lastFibo.n = 0;
-        lastFibo.fibo = 0;
-        lastFibo = null;
+//        lastFibo.n = 0;
+//        lastFibo.fibo = 0;
+        CalculateFibonacci.lastFibo = null;
     }
 
 //    public static void main(String[] args) {
