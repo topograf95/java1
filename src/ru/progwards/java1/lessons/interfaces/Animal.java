@@ -6,7 +6,7 @@ enum AnimalKind { ANIMAL, COW, HAMSTER, DUCK }
 
 enum FoodKind { UNKNOWN, HAY, CORN }
 
-public class Animal implements FoodCompare {
+public class Animal implements FoodCompare, CompareWeight {
     double weight;
 
     public Animal(double weight) {
@@ -50,6 +50,23 @@ public class Animal implements FoodCompare {
     @Override
     public int compareFoodPrice(Animal animal) {
         return Double.compare(this.getFoodPrice(), animal.getFoodPrice());
+    }
+
+    @Override
+    public CompareResult compareWeight(CompareWeight smthHasWeigt) {
+        return null;
+    }
+
+    @Override
+    public CompareResult compareWeight(Food food) {
+        return null;
+    }
+
+    @Override
+    public CompareResult compareWeight(Animal animal) {
+        if (weight < animal.weight) return CompareResult.LESS;
+        else if (weight == animal.weight) return CompareResult.EQUAL;
+        else return CompareResult.GREATER;
     }
 
 //    public static void main(String[] args) {

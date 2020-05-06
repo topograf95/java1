@@ -11,11 +11,22 @@ public class Food implements CompareWeight {
     public int getWeight() {
         return weight;
     }
+
+    @Override
+    public CompareResult compareWeight(CompareWeight smthHasWeigt) {
+        return null;
+    }
+
     @Override
     public CompareResult compareWeight(Food food) {
         if (weight < food.weight) return CompareResult.LESS;
         else if (weight == food.weight) return CompareResult.EQUAL;
         else return CompareResult.GREATER;
+    }
+
+    @Override
+    public CompareResult compareWeight(Animal animal) {
+        return null;
     }
 
     public static void main(String[] args) {
