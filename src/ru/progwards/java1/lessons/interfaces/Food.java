@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.interfaces;
 
-enum CompareResult { LESS, EQUAL, GREATER }
-
 public class Food implements CompareWeight {
     private int weight;
 
