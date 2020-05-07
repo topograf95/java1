@@ -61,20 +61,20 @@ public class Animal implements FoodCompare, CompareWeight {
         else return CompareResult.GREATER;
     }
 
-    public static void main(String[] args) {
-        Animal an = new Animal(55.0);
-        Cow cow = new Cow(50.0);
-        Hamster ham = new Hamster(100.0);
-        Duck duck = new Duck(5.0);
-        System.out.println(an.toStringFull());
-        System.out.println(cow.toStringFull());
-        System.out.println(ham.toStringFull());
-        System.out.println(duck.toStringFull());
-        System.out.println(ham.equals(ham));
-        System.out.println(cow.compareWeight(duck));
-        CompareWeight[] arr = {cow, ham, duck};
-        sort(arr);
-    }
+//    public static void main(String[] args) {
+//        Animal an = new Animal(55.0);
+//        Cow cow = new Cow(50.0);
+//        Hamster ham = new Hamster(100.0);
+//        Duck duck = new Duck(5.0);
+//        System.out.println(an.toStringFull());
+//        System.out.println(cow.toStringFull());
+//        System.out.println(ham.toStringFull());
+//        System.out.println(duck.toStringFull());
+//        System.out.println(ham.equals(ham));
+//        System.out.println(cow.compareWeight(duck));
+//        CompareWeight[] arr = {cow, ham, duck};
+//        sort(arr);
+//    }
 
     @Override
     public boolean equals(Object o) {
