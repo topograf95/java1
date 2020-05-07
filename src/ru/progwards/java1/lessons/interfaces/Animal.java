@@ -2,6 +2,8 @@ package ru.progwards.java1.lessons.interfaces;
 
 import java.util.Objects;
 
+import static ru.progwards.java1.lessons.interfaces.ArraySort.sort;
+
 enum AnimalKind { ANIMAL, COW, HAMSTER, DUCK }
 
 enum FoodKind { UNKNOWN, HAY, CORN }
@@ -54,24 +56,14 @@ public class Animal implements FoodCompare, CompareWeight {
 
     @Override
     public CompareResult compareWeight(CompareWeight smthHasWeigt) {
-        return null;
-    }
-
-    @Override
-    public CompareResult compareWeight(Food food) {
-        return null;
-    }
-
-    @Override
-    public CompareResult compareWeight(Animal animal) {
-        if (weight < animal.weight) return CompareResult.LESS;
-        else if (weight == animal.weight) return CompareResult.EQUAL;
+        if (weight < ((Animal) smthHasWeigt).weight) return CompareResult.LESS;
+        else if (weight == ((Animal) smthHasWeigt).weight) return CompareResult.EQUAL;
         else return CompareResult.GREATER;
     }
 
     public static void main(String[] args) {
         Animal an = new Animal(55.0);
-        Cow cow = new Cow(100.0);
+        Cow cow = new Cow(50.0);
         Hamster ham = new Hamster(100.0);
         Duck duck = new Duck(5.0);
         System.out.println(an.toStringFull());
@@ -80,6 +72,8 @@ public class Animal implements FoodCompare, CompareWeight {
         System.out.println(duck.toStringFull());
         System.out.println(ham.equals(ham));
         System.out.println(cow.compareWeight(duck));
+        CompareWeight[] arr = {cow, ham, duck};
+        sort(arr);
     }
 
     @Override

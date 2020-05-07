@@ -1,5 +1,7 @@
 package ru.progwards.java1.lessons.interfaces;
 
+import static ru.progwards.java1.lessons.interfaces.ArraySort.sort;
+
 public class Food implements CompareWeight {
     private int weight;
 
@@ -12,24 +14,21 @@ public class Food implements CompareWeight {
 
     @Override
     public CompareResult compareWeight(CompareWeight smthHasWeigt) {
-        return null;
-    }
-
-    @Override
-    public CompareResult compareWeight(Food food) {
-        if (weight < food.weight) return CompareResult.LESS;
-        else if (weight == food.weight) return CompareResult.EQUAL;
+        if (weight < ((Food) smthHasWeigt).weight) return CompareResult.LESS;
+        else if (weight == ((Food) smthHasWeigt).weight) return CompareResult.EQUAL;
         else return CompareResult.GREATER;
     }
 
-    @Override
-    public CompareResult compareWeight(Animal animal) {
-        return null;
-    }
 
     public static void main(String[] args) {
         Food a = new Food(100);
         Food b = new Food(200);
+        Food c = new Food(300);
         System.out.println(a.compareWeight(b));
+        CompareWeight[] arr = {b, c, b, c, a};
+        sort(arr);
+        for (CompareWeight v : arr) {
+            System.out.println(((Food) v).getWeight());
+        }
     }
 }
