@@ -19,7 +19,7 @@ public class Coder {
                         for (int i = 0, n = strIn.length(); i < n; ++i) {
                             strOut += code[(int) strIn.charAt(i)];
                         }
-                        fileWriter.write(strOut + '\n');
+                        fileWriter.write(strOut);
                     }
                 } finally {
                     fileWriter.close();
@@ -40,9 +40,8 @@ public class Coder {
             }
         }
     }
-
-    public static void main(String[] args) {
-        String s = "";
-        System.out.println(s.length());
-    }
+//    public static void main(String[] args) {
+//        String s = "";
+//        System.out.println(s.length());
+//    }
 }
