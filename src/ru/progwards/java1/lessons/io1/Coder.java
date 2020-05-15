@@ -9,20 +9,23 @@ public class Coder {
     public static void codeFile(String inFileName, String outFileName, char[] code, String logName) {
         try {
             FileReader reader = new FileReader(inFileName);
-            FileWriter fileWriter = new FileWriter(outFileName, true);
             try {
-                Scanner scanner = new Scanner(reader);
-                while (scanner.hasNextLine()) {
-                    String strOut = "";
-                    String strIn = scanner.nextLine();
-                    for (int i = 0, n = strIn.length(); i < n; ++i) {
-                        strOut += code[(int) strIn.charAt(i)];
+                FileWriter fileWriter = new FileWriter(outFileName, true);
+                try {
+                    Scanner scanner = new Scanner(reader);
+                    while (scanner.hasNextLine()) {
+                        String strOut = "";
+                        String strIn = scanner.nextLine();
+                        for (int i = 0, n = strIn.length(); i < n; ++i) {
+                            strOut += code[(int) strIn.charAt(i)];
+                        }
+                        fileWriter.write(strOut + '\n');
                     }
-                    fileWriter.write(strOut + '\n');
+                } finally {
+                    fileWriter.close();
                 }
             } finally {
                 reader.close();
-                fileWriter.close();
             }
         } catch (Exception e) {
             try {
