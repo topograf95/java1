@@ -3,7 +3,6 @@ package ru.progwards.java1.lessons.io1;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Coder {
     public static void codeFile(String inFileName, String outFileName, char[] code, String logName) {
@@ -12,14 +11,11 @@ public class Coder {
             try {
                 FileWriter fileWriter = new FileWriter(outFileName, true);
                 try {
-                    Scanner scanner = new Scanner(reader);
-                    while (scanner.hasNextLine()) {
-                        String strOut = "";
-                        String strIn = scanner.nextLine();
-                        for (int i = 0, n = strIn.length(); i < n; ++i) {
-                            strOut += code[(int) strIn.charAt(i)];
-                        }
-                        fileWriter.write(strOut);
+                    int symbol = reader.read();
+                    while (symbol != -1) {
+                        char c = code[symbol];
+                        fileWriter.write(c);
+                        symbol = reader.read();
                     }
                 } finally {
                     fileWriter.close();
@@ -40,8 +36,11 @@ public class Coder {
             }
         }
     }
-//    public static void main(String[] args) {
-//        String s = "";
-//        System.out.println(s.length());
-//    }
+    public static void main(String[] args) {
+        String inS = "fileTest.txt";
+        String outS = "fileTest2.txt";
+        String logS = "fileTest2.txt";
+        char[] ar = new char[5];
+        codeFile(inS, outS, ar, logS);
+    }
 }
