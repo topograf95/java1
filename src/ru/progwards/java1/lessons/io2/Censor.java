@@ -14,7 +14,7 @@ public class Censor {
         }
         @Override
         public String toString() {
-            return fileName +" : "+ getMessage;
+            return fileName +":"+ getMessage;
         }
     }
     public static void censorFile(String inoutFileName, String[] obscene) throws CensorException {
@@ -45,8 +45,8 @@ public class Censor {
 
     public static void main(String[] args) {
         try {
-            String s = "fileTest2.txt";
-            String[] obscene = {"Java", "Oracle", "Sun", "Microsystems"};
+            String s = null; // "fileTest2.txt";
+            String[] obscene = null; // {"Java", "Oracle", "Sun", "Microsystems"};
             censorFile(s, obscene);
         } catch (CensorException e) {
             System.out.println(e.toString());
