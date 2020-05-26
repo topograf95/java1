@@ -10,11 +10,9 @@ public class MatrixIterator<T> implements Iterator<T> {
 
     MatrixIterator(T[][] array) {
         index = 0;
-        int m = array.length;
-        int n = array[0].length;
-        this.array = new ArrayList<T>(m*n);
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
+        this.array = new ArrayList<>();
+        for (int i = 0, m = array.length; i < m; ++i) {
+            for (int j = 0, n = array[i].length; j < n; ++j) {
                 this.array.add(array[i][j]);
             }
         }
@@ -36,14 +34,12 @@ public class MatrixIterator<T> implements Iterator<T> {
 
     public static void main(String[] args) {
         String[] arr1 = {"1", "3", "3", "5", "4", "4", "4", "2", "4"};
-        String[] arr2 = {"1", "2", "3", "5", "5", "4", "3", "2", "4"};
+        String[] arr2 = {"1", "2", "3", "5", "5", "4", "3"};
         String[][] matr = {arr1, arr2};
         MatrixIterator<String> it = new MatrixIterator<>(matr);
         while (it.hasNext()) {
             String s = it.next();
             System.out.print(s +' ');
         }
-        System.out.println("\n"+ it.next());
-        System.out.println(it.next());
     }
 }
