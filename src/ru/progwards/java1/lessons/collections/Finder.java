@@ -19,9 +19,6 @@ public class Finder {
         minSumPair.add(k);
         minSumPair.add(k+1);
         return minSumPair;
-//        arrNumbers[k] = k;
-//        arrNumbers[k+1] = k+1;
-//        return Arrays.asList(arrNumbers);
     }
     public static Collection<Integer> findLocalMax(Collection<Integer> numbers) {
         Collection<Integer> localMax = new ArrayList();

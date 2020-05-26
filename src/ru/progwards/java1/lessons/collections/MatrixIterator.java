@@ -36,7 +36,7 @@ public class MatrixIterator<T> implements Iterator<T> {
 
     public static void main(String[] args) {
         String[] arr1 = {"1", "3", "3", "5", "4", "4", "4", "2", "4"};
-        String[] arr2 = {"1", "3", "3", "5", "4", "4", "4", "2", "4"};
+        String[] arr2 = {"1", "2", "3", "5", "5", "4", "3", "2", "4"};
         String[][] matr = {arr1, arr2};
         MatrixIterator<String> it = new MatrixIterator<>(matr);
         while (it.hasNext()) {

@@ -13,8 +13,8 @@ public class Creator {
         return collection;
     }
     public static Collection<Integer> fillOdd(int n) {
-        Collection<Integer> collection = new ArrayList<>(n*3);
-        for (int i = n*6; i > 0; --i) {
+        Collection<Integer> collection = new ArrayList<>(n);
+        for (int i = n*2; i > 0; --i) {
             if (i % 2 != 0) collection.add(i);
         }
         return collection;
@@ -22,15 +22,15 @@ public class Creator {
     public static Collection<Integer> fill3(int n) {
         n *= 3;
         Collection<Integer> collection = new ArrayList<>(n);
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; i += 3) {
             collection.add(i);
-            collection.add(++i*i);
-            collection.add(++i*i*i);
+            collection.add(i*i);
+            collection.add(i*i*i);
         }
         return collection;
     }
 
     public static void main(String[] args) {
-        System.out.println(fill3(3).toString());
+        System.out.println(fillOdd(10).toString());
     }
 }
