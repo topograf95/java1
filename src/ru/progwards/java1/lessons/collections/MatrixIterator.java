@@ -8,14 +8,14 @@ public class MatrixIterator<T> implements Iterator<T> {
     private List<T> array;
     private int index;
 
-    MatrixIterator(T[][] matrix) {
+    MatrixIterator(T[][] array) {
         index = 0;
-        int m = matrix.length;
-        int n = matrix[0].length;
+        int m = array.length;
+        int n = array[0].length;
         this.array = new ArrayList<T>(m*n);
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
-                array.add(matrix[i][j]);
+                this.array.add(array[i][j]);
             }
         }
     }
