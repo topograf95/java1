@@ -48,7 +48,9 @@ public class Insurance {
             case SHORT: duration = Duration.ofMillis(Long.parseLong(strDuration));
                 break;
             case LONG: DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-                LocalDateTime ldt = LocalDateTime.from(dtf.parse(strDuration));
+                LocalDateTime ldtTmp1 = LocalDateTime.from(dtf.parse(strDuration));
+                LocalDateTime ldtTmp2 = ldtTmp1.plusMonths(1);
+                LocalDateTime ldt = ldtTmp2.plusDays(1);
                 duration = Duration.between(LocalDateTime.of(0,1,1,0,0,0),ldt);
                 break;
             case FULL: duration = Duration.parse(strDuration);
@@ -87,10 +89,17 @@ public class Insurance {
         String str1 = "2020-06-19";
         String str2 = "2020-06-19T03:29:08.967321";
         String str3 = "2020-06-19T03:29:08.967321+03:00[Europe/Moscow]";
-        Insurance insurance = new Insurance(str2, FormatStyle.LONG);
-        insurance.setDuration("2020-06-19T03:29:05", FormatStyle.LONG);
+ //       Insurance insurance = new Insurance(str2, FormatStyle.LONG);
+        Insurance insurance = new Insurance(zdt2);
+        insurance.setDuration("0000-01-01T00:00:00", FormatStyle.LONG);
         System.out.println(insurance.checkValid(zdt2));
         System.out.println(insurance.toString());
-        LocalTime lt = LocalTime.now();
+        LocalDateTime ldt5 = LocalDateTime.of(0,1,1,0,1,5);
+        System.out.println(ldt5);
+        System.out.println(ldt5.getSecond());
+        Duration tenSeconds = Duration.ofSeconds(10);
+        Duration twoSeconds = Duration.ofSeconds(1, 1_000_000_000);
+        System.out.println("tenSeconds: " + tenSeconds);
+        System.out.println("twoSeconds: " + twoSeconds);
     }
 }
