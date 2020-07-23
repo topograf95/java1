@@ -38,9 +38,10 @@ public class Insurance {
     }
 
     public void setDuration(int months, int days, int hours) {
-        Period p = Period.ofMonths(months);
-        duration = Duration.ofDays(p.getDays() + days);
-        duration = duration.plusHours(hours);
+//        Period p = Period.ofMonths(months);
+//        duration = Duration.ofDays(p.getDays() + days);
+//        duration = duration.plusHours(hours);
+        duration = Duration.between(this.start, this.start.plusMonths(months).plusDays(days).plusHours(hours));
     }
 
     public void setDuration(String strDuration, FormatStyle style) {
