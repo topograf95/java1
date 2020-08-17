@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class OrderProcessor {
@@ -23,7 +24,7 @@ public class OrderProcessor {
                 @Override
                 public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
                     if (pathMatcher.matches(path)) {
-                        LocalDate ld = (LocalDate)Files.getAttribute(path,"lastModifiedTime");
+                        LocalDate ld = LocalDate.ofEpochDay(Files.getLastModifiedTime(path).toMillis()/(24*60*60*1000));
                         if ((start == null && finish == null)||
                                 (start == null && ld.compareTo(finish) <= 0)||
                                 (finish == null && ld.compareTo(start) >= 0)||
@@ -52,7 +53,8 @@ public class OrderProcessor {
                                         order.shopId = shop;
                                         order.orderId = strName.substring(4,10);
                                         order.customerId = strName.substring(11,15);
-                                        order.datetime = (LocalDateTime) Files.getAttribute(path,"lastModifiedTime");
+                                        order.datetime = LocalDateTime.parse(Files.getLastModifiedTime(path).toString(),
+                                                DateTimeFormatter.ISO_DATE_TIME);
                                         listOrder.add(order);
                                     }
                         }
