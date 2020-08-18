@@ -17,7 +17,7 @@ public class OrderProcessor {
         listOrder = new ArrayList<>();
     }
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
-        final int[] countError = {0};
+        int[] countError = {0};
         PathMatcher pathMatcher = FileSystems.getDefault().getPathMatcher("glob:**/???-??????-????.csv");
         try {
             Files.walkFileTree(Paths.get(startPath), new SimpleFileVisitor<Path>() {
@@ -37,6 +37,10 @@ public class OrderProcessor {
                                         List<String> itemFale = Files.readAllLines(path);
                                         for (String itemStr : itemFale) {
                                             String[] arr = itemStr.split(",");
+                                            if (arr.length != 3) {
+                                                countError[0]++;
+                                                return FileVisitResult.CONTINUE;
+                                            }
                                             OrderItem orIt = new OrderItem();
                                             orIt.googsName = arr[0].trim();
                                             orIt.count = Integer.parseInt(arr[1].trim());
