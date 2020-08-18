@@ -5,6 +5,7 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -57,12 +58,13 @@ public class OrderProcessor {
                                         order.shopId = shop;
                                         order.orderId = strName.substring(4,10);
                                         order.customerId = strName.substring(11,15);
-                                        order.datetime = LocalDateTime.parse(Files.getLastModifiedTime(path).toString(),
-                                                DateTimeFormatter.ISO_DATE_TIME);
+                                        order.datetime = LocalDateTime.ofEpochSecond(
+                                                Files.getLastModifiedTime(path).toMillis()/1000,
+                                                0, ZoneOffset.ofHours(3));
                                         listOrder.add(order);
                                     }
                         }
-                    } else { countError[0]++;}
+                    }// else { countError[0]++;}
                     return FileVisitResult.CONTINUE;
                 }
                 @Override
