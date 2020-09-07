@@ -4,7 +4,17 @@ import java.util.Arrays;
 
 public class ArraySort {
     public static void sort(Comparable<Number>[] a) {
-        Arrays.sort(a);
+ //       Arrays.sort(a);
+        Comparable<Number> tmp;
+        for (int i = 0, n = a.length; i < n-1; ++i) {
+            for (int j = i+1; j < n; ++j) {
+                if (a[i].compareTo((Number)a[j]) > 0) {
+                    tmp = a[i];
+                    a[i] = a[j];
+                    a[j] = tmp;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

@@ -31,4 +31,10 @@ public class IntNumber extends Number {
     public int compareTo(Number o) {
         return CharSequence.compare(this.toString(), o.toString());
     }
+
+//    @Override
+//    public int compareTo(Number o) {
+//        return Integer.compare(Integer.parseInt(this.toString()),
+//                Integer.parseInt(o.toString()));
+//    }
 }

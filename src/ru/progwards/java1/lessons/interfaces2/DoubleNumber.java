@@ -27,8 +27,13 @@ public class DoubleNumber extends Number {
         return String.valueOf(num);
     }
 
+//    @Override
+//    public int compareTo(Number o) {
+//        return this.toString().compareTo(o.toString());
+//    }
     @Override
     public int compareTo(Number o) {
-        return this.toString().compareTo(o.toString());
+        return Double.compare(Double.parseDouble(this.toString()),
+                Double.parseDouble(o.toString()));
     }
 }
