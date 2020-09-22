@@ -1,18 +1,19 @@
 package ru.progwards.java2.lessons.generics;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class FruitBox<T> {
-    List<T> box = new ArrayList<>();
+ class FruitBox<T extends Fruit> extends ArrayList<T> {
+    ArrayList<T> box = new ArrayList<>();
 
-    void add(T elem) {
+    @Override
+    public boolean add(T elem) {
         box.add(elem);
+        return true;
     }
 
     float getWeight() {
         if (box.size() == 0) return 0;
-        Fruit elem = (Fruit) this.box.get(0);
+        Fruit elem = /*(Fruit)*/ this.box.get(0);
         return elem.getWeight() * box.size();
     }
 
@@ -21,7 +22,7 @@ public class FruitBox<T> {
             fruitBox.box = new ArrayList<>(this.box);
             this.box.clear();
         } catch (UnsupportedOperationException e) {
-            e.getMessage();
+            e.getStackTrace();
         }
     }
 
@@ -30,9 +31,9 @@ public class FruitBox<T> {
     }
 
     public static void main(String[] args) {
-        FruitBox<Orange> boxOrange1 = new FruitBox();
-        FruitBox boxOrange2 = new FruitBox();
-        FruitBox<Apple> boxApple = new FruitBox();
+        FruitBox<Orange> boxOrange1 = new FruitBox<>();
+        FruitBox boxOrange2 = new FruitBox<>();
+        FruitBox<Apple> boxApple = new FruitBox<>();
 
         Apple app1 = new Apple();
         Apple app2 = new Apple();
@@ -44,9 +45,9 @@ public class FruitBox<T> {
         Orange oran3 = new Orange();
         boxOrange1.add(oran1);
         boxOrange1.add(oran2);
-        boxOrange1.add(oran3);
+        boxOrange1.box.add(oran3);
 
-        boxOrange2.add(oran2);
+        boxOrange2.box.add(oran1);
         boxOrange2.add(app1);
 
         System.out.println(boxApple.getWeight());
@@ -61,6 +62,7 @@ public class FruitBox<T> {
         System.out.println(boxOrange1.getWeight());
 
         boxApple.moveTo(boxOrange2);
+        System.out.println(boxOrange2.box.get(0) instanceof Apple);
         System.out.println(boxOrange2.getWeight());
     }
 }
