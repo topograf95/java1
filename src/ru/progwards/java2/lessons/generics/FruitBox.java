@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
     @Override
     public boolean add(T elem) {
-        box.add(elem);
-        return true;
+        if (!this.box.isEmpty()) {
+            if (!box.get(0).getClass().equals(elem.getClass()))
+                return false;
+        }
+        return box.add(elem);
     }
 
     float getWeight() {
@@ -18,12 +21,12 @@ import java.util.ArrayList;
     }
 
     void moveTo(FruitBox<T> fruitBox) {
-        try {
+            if (!this.box.isEmpty() && !fruitBox.box.isEmpty()) {
+                if (!box.get(0).getClass().equals(fruitBox.box.get(0).getClass()))
+                    throw new UnsupportedOperationException();
+            }
             fruitBox.box = new ArrayList<>(this.box);
             this.box.clear();
-        } catch (UnsupportedOperationException e) {
-            e.getStackTrace();
-        }
     }
 
     int сompareTo(FruitBox o) {
@@ -47,7 +50,7 @@ import java.util.ArrayList;
         boxOrange1.add(oran2);
         boxOrange1.box.add(oran3);
 
-        boxOrange2.box.add(oran1);
+        boxOrange2.add(oran1);
         boxOrange2.add(app1);
 
         System.out.println(boxApple.getWeight());
@@ -61,8 +64,7 @@ import java.util.ArrayList;
         System.out.println(boxOrange2.getWeight());
         System.out.println(boxOrange1.getWeight());
 
-        boxApple.moveTo(boxOrange2);
-        System.out.println(boxOrange2.box.get(0) instanceof Apple);
+ //       boxApple.moveTo(boxOrange2);
         System.out.println(boxOrange2.getWeight());
     }
 }
