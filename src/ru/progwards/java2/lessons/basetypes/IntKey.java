@@ -1,13 +1,13 @@
 package ru.progwards.java2.lessons.basetypes;
 
-class IntKey implements HashValue {
-    private int key;
+class IntKey<K> implements HashValue {
+    private K key;
 
-    IntKey(int key) {
+    IntKey(K key) {
         this.key = key;
     }
     @Override
     public int getHash() {
-        return key;
+        return key.hashCode();
     }
 }

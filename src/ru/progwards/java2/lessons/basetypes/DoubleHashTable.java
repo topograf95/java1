@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
     // Хэш таблица с двойным хэширование, аналог словаря (Map),
-    // ключём могут быть одновременно данные двух типов (int, String);
+    // ключём могут быть одновременно данные разных типов (int, long, double, String);
 
 public class DoubleHashTable<K, V> implements
         Iterable<DoubleHashTable.TableItem>,
@@ -89,12 +89,12 @@ public class DoubleHashTable<K, V> implements
         return (int)(table.length * (d - Math.floor(d)));
     }
 
-    private int getTmpKey(K key) {   // Определение типа (String или int) и вычисление первичного ключа
+    private int getTmpKey(K key) {   // Определение типа (String или любого числового) и вычисление первичного ключа
         HashValue hashValue;         // с помощью интерфейса HashValue;
         if (key.getClass().getName().equals("java.lang.String")) {
             hashValue = new StringKey((String)key);
         } else {
-            hashValue = new IntKey((Integer)key);
+            hashValue = new IntKey(key);
         }
         return hashValue.getHash();
     }
@@ -115,7 +115,7 @@ public class DoubleHashTable<K, V> implements
         return size;
     }
 
-    private void buildNewTable(K key, V value) {
+    private void buildNewTable(K key, V value) {   // Перестроение таблицы;
         if (count_build < 2) {
             tableTmp = new TableItem[table.length];
             System.arraycopy(table, 0, tableTmp, 0, tableTmp.length);
@@ -213,22 +213,23 @@ public class DoubleHashTable<K, V> implements
                 tab.add(i, i*2);
             } else tab.add(s, i*2);
         }
-//        for (int i = 0; i < 4; ++i) {
-//            String s = Integer.toString(i);
-//            s += "qwert";
-//            if (i % 2 == 0) {
-//                System.out.println(i +" - "+ tab.get(s));
-//            } else {
-//                System.out.println(s +" - "+ tab.get(s));
-//            }
-//        }
+
+        for (int i = 0; i < 4; ++i) {
+            String s = Integer.toString(i);
+            s += "qwert";
+            if (i % 2 == 0) {
+                System.out.println(i +" - "+ tab.get(i));
+            } else {
+                System.out.println(s +" - "+ tab.get(s));
+            }
+        }
         System.out.println(tab.get("477qwert"));
         tab.remove("477qwert");
         System.out.println(tab.get("477qwert"));
         tab.add("477qwert", "OK");
         System.out.println(tab.get("477qwert"));
-        tab.change("477qwert", 10001);
-        System.out.println(tab.get(10001));
+        tab.change("477qwert", -1000123456789.55);
+        System.out.println(tab.get(-1000123456789.55));
  //       tab.show();
         System.out.println(tab.size());
         tab.forEach(a -> System.out.println(a));
@@ -248,7 +249,7 @@ public class DoubleHashTable<K, V> implements
         tab.forEach(System.out::println);
         System.out.println(tab.next().key);  // По итералам можно получить приватные поля класса!!?
         System.out.println(tab.next().item);
-        System.out.println(tab.get(10001));
+        System.out.println(tab.get(-1000123456789.55));
         System.out.println(tab.size());
     }
 }
