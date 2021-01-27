@@ -1,11 +1,11 @@
 package ru.progwards.java2.lessons.reflection;
 
 class Persan {
-    private String name;
+    private static String name;
     private int age;
     private boolean sex;
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 

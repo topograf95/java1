@@ -13,6 +13,10 @@ class GettersAndSetters {
         ArrayList<String> namesGetSet = new ArrayList<>();
         // Получаем список имён методов класса(только Геттеров и Сеттеров)
         for (Method method : methods) {
+            // Проверка на модификатор static
+            if (Modifier.isStatic(method.getModifiers())) {
+                continue;
+            }
             if (method.getName().startsWith("get") || method.getName().startsWith("set")) {
                 namesGetSet.add(method.getName());
             }
